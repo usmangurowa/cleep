@@ -11,7 +11,12 @@ const SafeAreaView = ({
   style?: ViewStyle | ViewStyle[];
 }) => {
   return (
-    <SafeArea style={[tw`pt-${constants.statusBarHeight}px flex-1`, style]}>
+    <SafeArea
+      style={[
+        tw`pt-${constants.statusBarHeight}px flex-1 dark:bg-black`,
+        style,
+      ]}
+    >
       {children}
     </SafeArea>
   );

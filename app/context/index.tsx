@@ -2,10 +2,11 @@ import React from "react";
 import { useAppColorScheme, useDeviceContext } from "twrnc";
 import storage from "../storage";
 import tw from "../twrnc";
-import reducer from "./reducer";
+import reducer, { Actions } from "./reducer";
 
 const initialState: InitialStateTypes = {
   theme: "light",
+  showWelcome: true,
 };
 
 const storeContext = React.createContext<{
@@ -16,8 +17,10 @@ const storeContext = React.createContext<{
 export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   useDeviceContext(tw, { withDeviceColorScheme: false });
-  const [colorScheme, toggleColorScheme, setColorScheme] =
-    useAppColorScheme(tw);
+  const [colorScheme, toggleColorScheme, setColorScheme] = useAppColorScheme(
+    tw,
+    state.theme
+  );
 
   React.useEffect(() => {
     setColorScheme(state.theme);
@@ -26,7 +29,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   React.useEffect(() => {
     const data = storage.getString("initialState");
     if (data) {
-      dispatch({ type: "INITIALIZE", payload: JSON.parse(data) });
+      dispatch({ type: Actions.INITIALIZE, payload: JSON.parse(data) });
     }
   }, []);
 

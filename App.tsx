@@ -7,7 +7,9 @@ import { Button, Provider as PaperProvider, Text } from "react-native-paper";
 import theme from "./app/theme";
 import tw from "./app/twrnc";
 import { Actions } from "./app/context/reducer";
-import { HomeScreen } from "./app/screens";
+import Navigation from "./app/navigations";
+import { useAppColorScheme, useDeviceContext } from "twrnc";
+import storage from "./app/storage";
 
 const AppEntry = () => {
   const { state, dispatch } = useStore();
@@ -15,7 +17,7 @@ const AppEntry = () => {
   return (
     <PaperProvider theme={theme(state.theme)}>
       <StatusBar style={state.theme} />
-      <HomeScreen />
+      <Navigation />
     </PaperProvider>
   );
 };

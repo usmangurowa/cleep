@@ -8,6 +8,7 @@ type SnackBarType = {
 
 interface InitialStateTypes {
   theme: "light" | "dark";
+  showWelcome: boolean;
 }
 
 interface Action {
