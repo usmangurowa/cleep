@@ -7,23 +7,15 @@ import { Button, Provider as PaperProvider, Text } from "react-native-paper";
 import theme from "./app/theme";
 import tw from "./app/twrnc";
 import { Actions } from "./app/context/reducer";
+import { HomeScreen } from "./app/screens";
 
 const AppEntry = () => {
   const { state, dispatch } = useStore();
 
-  const toggleTheme = () => {
-    dispatch({ type: Actions.TOGGLE_THEME });
-  };
-
   return (
     <PaperProvider theme={theme(state.theme)}>
-      <View style={tw`dark:bg-black flex-1 items-center justify-center`}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style={state.theme} />
-        <Button onPress={toggleTheme} mode="contained">
-          Hello
-        </Button>
-      </View>
+      <StatusBar style={state.theme} />
+      <HomeScreen />
     </PaperProvider>
   );
 };

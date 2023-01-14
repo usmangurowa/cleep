@@ -99,7 +99,7 @@ const theme = (mode: "dark" | "light" = "light") => {
       ...colors,
     },
     dark: mode === "dark",
-    roundness: 10,
+    roundness: 2,
   };
   return _theme;
 };

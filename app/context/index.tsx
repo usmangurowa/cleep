@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppColorScheme, useDeviceContext } from "twrnc";
+import storage from "../storage";
 import tw from "../twrnc";
 import reducer from "./reducer";
 
@@ -21,6 +22,13 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   React.useEffect(() => {
     setColorScheme(state.theme);
   }, [state.theme]);
+
+  React.useEffect(() => {
+    const data = storage.getString("initialState");
+    if (data) {
+      dispatch({ type: "INITIALIZE", payload: JSON.parse(data) });
+    }
+  }, []);
 
   return (
     <storeContext.Provider value={{ state, dispatch }}>
