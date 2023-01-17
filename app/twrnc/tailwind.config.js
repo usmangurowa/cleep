@@ -9,6 +9,7 @@ module.exports = {
         warning: "#FCDC4D",
         error: "#EF2D56",
         success: "#2FBF71",
+        black: "#252525",
       },
     },
   },

@@ -1,9 +1,13 @@
+import { setApiHeader } from "../api";
 import storage from "../storage";
 
 export enum Actions {
   TOGGLE_THEME = "TOGGLE_THEME",
   INITIALIZE = "INITIALIZE",
   HIDE_WELCOME = "HIDE_WELCOME",
+  CREATE_SESSION = "CREATE_SESSION",
+  REMOVE_SESSION = "REMOVE_SESSION",
+  RESET_SETTINGS = "RESET_SETTINGS",
 }
 
 const reducer: ReducerType = (state, action) => {
@@ -20,6 +24,31 @@ const reducer: ReducerType = (state, action) => {
       new_state = {
         ...state,
         showWelcome: false,
+      };
+      break;
+    case Actions.CREATE_SESSION:
+      setApiHeader({
+        SESSION_ID: action.payload.sessionId,
+        SIGNING_KEY: action.payload.signInKey,
+      });
+      new_state = {
+        ...state,
+        hasSession: true,
+      };
+      break;
+    case Actions.REMOVE_SESSION:
+      storage.delete("session");
+      new_state = {
+        ...state,
+        hasSession: false,
+      };
+      break;
+    case Actions.RESET_SETTINGS:
+      storage.clearAll();
+      new_state = {
+        theme: "light",
+        showWelcome: true,
+        hasSession: false,
       };
       break;
     case Actions.INITIALIZE:

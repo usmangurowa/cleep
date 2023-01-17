@@ -9,6 +9,15 @@ const api = create({
 });
 export default api;
 
-export const setApiHeader = (token: string) => {
-  api.setHeader("Authorization", `Bearer ${token}`);
+export const setApiHeader = ({
+  SESSION_ID,
+  SIGNING_KEY,
+}: {
+  SESSION_ID: string;
+  SIGNING_KEY: string;
+}) => {
+  api.setHeaders({
+    "X-Session-ID": SESSION_ID,
+    "X-Signing-Key": SIGNING_KEY,
+  });
 };

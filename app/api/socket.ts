@@ -1,6 +1,6 @@
-import { io, SocketOptions } from "socket.io-client";
+import { io, SocketOptions, Socket } from "socket.io-client";
 import constants from "../constants";
-const socket = ({
+const socket: any = ({
   sessionID,
   signingKey,
 }: {

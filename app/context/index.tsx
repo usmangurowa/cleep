@@ -7,6 +7,8 @@ import reducer, { Actions } from "./reducer";
 const initialState: InitialStateTypes = {
   theme: "light",
   showWelcome: true,
+  hasSession: false,
+  isConnected: false,
 };
 
 const storeContext = React.createContext<{
@@ -28,8 +30,12 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
 
   React.useEffect(() => {
     const data = storage.getString("initialState");
+    const session = storage.getString("session");
     if (data) {
       dispatch({ type: Actions.INITIALIZE, payload: JSON.parse(data) });
+    }
+    if (session) {
+      dispatch({ type: Actions.CREATE_SESSION, payload: JSON.parse(session) });
     }
   }, []);
 

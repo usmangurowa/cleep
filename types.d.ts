@@ -9,6 +9,8 @@ type SnackBarType = {
 interface InitialStateTypes {
   theme: "light" | "dark";
   showWelcome: boolean;
+  hasSession: boolean;
+  isConnected: boolean;
 }
 
 interface Action {
@@ -22,3 +24,11 @@ type ContextHook = () => {
   state: InitialStateTypes;
   dispatch: (action: Action) => void;
 };
+
+interface DocumentType {
+  id: string;
+  content: string;
+  type: "text" | "file";
+  created_at: string;
+  updated_at: string;
+}

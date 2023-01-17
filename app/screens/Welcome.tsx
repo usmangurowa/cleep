@@ -7,7 +7,7 @@ import { useStore } from "../context";
 import { Actions } from "../context/reducer";
 import { NavigationProp } from "@react-navigation/native";
 const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
-  const { state, dispatch } = useStore();
+  const { dispatch } = useStore();
 
   const handleGetStarted = () => {
     dispatch({ type: Actions.HIDE_WELCOME });

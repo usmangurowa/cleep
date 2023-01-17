@@ -12,16 +12,17 @@ import { withTheme } from "react-native-paper";
 
 const Main = () => {
   return (
-    <View style={tw`flex-1 dark:bg-black`}>
+    <View style={tw`flex-1 dark:bg-black rounded-t-10 overflow-hidden`}>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
-          tabBarStyle: tw.style("bg-transparent", {
+          tabBarStyle: tw.style("bg-transparent ", {
             elevation: 0,
             borderTopWidth: 0,
           }),
           tabBarLabel: () => null,
           tabBarActiveTintColor: tw.color("primary"),
+          tabBarHideOnKeyboard: true,
         }}
       >
         <Tab.Screen
