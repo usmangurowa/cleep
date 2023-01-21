@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   AddCleepScreen,
   CreateCleepScreen,
+  DevicesScreen,
+  EditCleepScreen,
   HomeScreen,
   JoinCleepScreen,
   SettingsScreen,
@@ -13,7 +15,7 @@ import tw from "../twrnc";
 import { View } from "react-native";
 import { useStore } from "../context";
 
-import { Octicons, Ionicons } from "@expo/vector-icons";
+import { Octicons, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import routes from "./routes";
 import { withTheme } from "react-native-paper";
 
@@ -43,6 +45,19 @@ const Main = () => {
           }}
           name={routes.MAIN_NAVIGATION.HOME.INDEX}
           component={HomeScreenNavigator}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="devices"
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+          name={routes.MAIN_NAVIGATION.DEVICES}
+          component={DevicesScreen}
         />
         <Tab.Screen
           options={{
@@ -82,6 +97,10 @@ const HomeScreenNavigator = () => {
       <Stack.Screen
         name={routes.MAIN_NAVIGATION.HOME.ADD_CLEEP}
         component={AddCleepScreen}
+      />
+      <Stack.Screen
+        name={routes.MAIN_NAVIGATION.HOME.EDIT_CLEEP}
+        component={EditCleepScreen}
       />
     </Stack.Navigator>
   );

@@ -5,7 +5,6 @@ import tw from "../twrnc";
 import { Button, Text, TextInput, Snackbar } from "react-native-paper";
 import { createSession } from "../api/sessions";
 import { useLoading } from "../hooks";
-import storage from "../storage";
 import { useStore } from "../context";
 import { Actions } from "../context/reducer";
 import { SafeAreaView } from "../components";
@@ -28,14 +27,6 @@ const CreateCleep = ({ navigation }: { navigation: NavigationProp<any> }) => {
       start();
       createSession(signInKey)
         .then((res: any) => {
-          storage.set(
-            "session",
-            JSON.stringify({
-              sessionId: res?.data.session_id,
-              signInKey,
-              createdAt: new Date().getTime(),
-            })
-          );
           setError("Session created successfully");
           dispatch({
             type: Actions.CREATE_SESSION,
@@ -68,9 +59,11 @@ const CreateCleep = ({ navigation }: { navigation: NavigationProp<any> }) => {
           </Text>
           <TextInput
             value={signInKey}
+            theme={{ roundness: 10 }}
             onChangeText={setSignInKey}
-            style={tw`w-full my-5`}
+            style={tw`w-full my-5 py-2`}
             placeholder="Enter Signing Key"
+            mode="outlined"
             placeholderTextColor={tw.color("gray-400")}
             secureTextEntry={secureText}
             right={

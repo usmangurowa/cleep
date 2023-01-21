@@ -5,7 +5,7 @@ import tw from "../twrnc";
 import { Button, Text, TextInput, Snackbar } from "react-native-paper";
 import { createSession } from "../api/sessions";
 import { useLoading } from "../hooks";
-import storage from "../storage";
+
 import { useStore } from "../context";
 import { Actions } from "../context/reducer";
 
@@ -26,14 +26,6 @@ const CreateCleep = () => {
       start();
       createSession(signInKey)
         .then((res: any) => {
-          storage.set(
-            "session",
-            JSON.stringify({
-              sessionId: res?.data.session_id,
-              signInKey,
-              createdAt: new Date().getTime(),
-            })
-          );
           setError("Session created successfully");
           dispatch({
             type: Actions.CREATE_SESSION,

@@ -9,7 +9,9 @@ export default {
       JOIN_CLEEP: "JOIN_CLEEP",
       CLEEP_LIST: "CLEEP_LIST",
       ADD_CLEEP: "ADD_CLEEP",
+      EDIT_CLEEP: "EDIT_CLEEP",
     },
     SETTINGS: "SETTINGS",
+    DEVICES: "DEVICES",
   },
 };

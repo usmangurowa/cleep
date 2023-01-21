@@ -6,19 +6,27 @@ import { FAB, Snackbar, withTheme } from "react-native-paper";
 import { useStore } from "../context";
 import * as Clipboard from "expo-clipboard";
 import { createCleep } from "../api/cleeps";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { NavigationProp, RouteProp } from "@react-navigation/native";
 import routes from "../navigations/routes";
 import { useLoading } from "../hooks";
 
-const AddCleep = () => {
-  const navigation: NavigationProp<any> = useNavigation();
+const EditCleep = ({
+  navigation,
+  route,
+}: {
+  navigation: NavigationProp<any>;
+  route: RouteProp<any, any>;
+}) => {
   const { state } = useStore();
-  const [content, setContent] = React.useState<string>("");
+  const [content, setContent] = React.useState<string>(
+    route.params?.cleep?.content || ""
+  );
   const [message, setMessage] = React.useState<string>("");
   const { isLoading, start, stop } = useLoading();
+
   const handleFABPress = async () => {
     if (content) {
-      // save cleep
+      // update cleep
       start();
       createCleep(content)
         .then((res: any) => {
@@ -38,7 +46,7 @@ const AddCleep = () => {
   };
   return (
     <SafeAreaView style={tw`flex-1 justify-between`}>
-      <Header title="Add Cleep" />
+      <Header title="Edit Cleep" />
       <TextInput
         multiline
         value={content}
@@ -52,7 +60,7 @@ const AddCleep = () => {
       />
 
       <FAB
-        style={tw`absolute bottom-0 right-0 m-5 rounded-full`}
+        style={tw`absolute bottom-0 right-0 m-4 rounded-full`}
         icon={content ? "content-save-outline" : "content-paste"}
         onPress={handleFABPress}
         loading={isLoading}
@@ -72,4 +80,4 @@ const AddCleep = () => {
   );
 };
 
-export default withTheme(AddCleep);
+export default EditCleep;

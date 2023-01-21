@@ -33,6 +33,14 @@ const reducer: ReducerType = (state, action) => {
         SESSION_ID: action.payload.sessionId,
         SIGNING_KEY: action.payload.signInKey,
       });
+      storage.set(
+        "session",
+        JSON.stringify({
+          sessionId: action.payload.sessionId,
+          signInKey: action.payload.signInKey,
+          createdAt: new Date().getTime(),
+        })
+      );
       new_state = {
         ...state,
         hasSession: true,

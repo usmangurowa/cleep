@@ -34,3 +34,20 @@ export const createCleep = (content: string) =>
         reject(error);
       });
   });
+
+export const updateCleep = (id: string, content: string) => {
+  return new Promise((resolve, reject) => {
+    api
+      .put(`/cleeps/${id}`, { content })
+      .then((response) => {
+        if (response.ok) {
+          resolve(response.data);
+        } else {
+          reject(response);
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
