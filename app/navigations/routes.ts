@@ -2,7 +2,14 @@ export default {
   WELCOME: "WELCOME",
   MAIN_NAVIGATION: {
     INDEX: "MAIN_NAVIGATION",
-    HOME: "HOME",
+    NAVIGATOR: "NAVIGATOR",
+    HOME: {
+      INDEX: "HOME",
+      CREATE_CLEEP: "CREATE_CLEEP",
+      JOIN_CLEEP: "JOIN_CLEEP",
+      CLEEP_LIST: "CLEEP_LIST",
+      ADD_CLEEP: "ADD_CLEEP",
+    },
     SETTINGS: "SETTINGS",
   },
 };

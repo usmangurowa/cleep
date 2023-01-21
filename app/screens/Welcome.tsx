@@ -5,8 +5,8 @@ import { Button, Text } from "react-native-paper";
 import { SafeAreaView } from "../components";
 import { useStore } from "../context";
 import { Actions } from "../context/reducer";
-import { NavigationProp } from "@react-navigation/native";
-const Home = ({ navigation }: { navigation: NavigationProp<any> }) => {
+
+const Home = () => {
   const { dispatch } = useStore();
 
   const handleGetStarted = () => {

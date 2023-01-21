@@ -18,3 +18,19 @@ export const getCleeps = () => {
       });
   });
 };
+
+export const createCleep = (content: string) =>
+  new Promise((resolve, reject) => {
+    api
+      .post("/cleeps", { content })
+      .then((response) => {
+        if (response.ok) {
+          resolve(response.data);
+        } else {
+          reject(response);
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });

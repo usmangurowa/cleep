@@ -8,6 +8,8 @@ export enum Actions {
   CREATE_SESSION = "CREATE_SESSION",
   REMOVE_SESSION = "REMOVE_SESSION",
   RESET_SETTINGS = "RESET_SETTINGS",
+  ON_CONNECT = "ON_CONNECT",
+  ON_DISCONNECT = "ON_DISCONNECT",
 }
 
 const reducer: ReducerType = (state, action) => {
@@ -43,12 +45,25 @@ const reducer: ReducerType = (state, action) => {
         hasSession: false,
       };
       break;
+    case Actions.ON_CONNECT:
+      new_state = {
+        ...state,
+        isConnected: true,
+      };
+      break;
+    case Actions.ON_DISCONNECT:
+      new_state = {
+        ...state,
+        isConnected: false,
+      };
+      break;
     case Actions.RESET_SETTINGS:
       storage.clearAll();
       new_state = {
         theme: "light",
         showWelcome: true,
         hasSession: false,
+        isConnected: false,
       };
       break;
     case Actions.INITIALIZE:
