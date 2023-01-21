@@ -2,7 +2,7 @@ import { View, Share } from "react-native";
 import React from "react";
 import { Header, SafeAreaView } from "../components";
 import tw from "../twrnc";
-import { Button, Snackbar, Text } from "react-native-paper";
+import { Button, Snackbar, Text, withTheme } from "react-native-paper";
 import storage from "../storage";
 import * as Clipboard from "expo-clipboard";
 
@@ -59,4 +59,4 @@ const AddDevice = () => {
   );
 };
 
-export default AddDevice;
+export default withTheme(AddDevice);

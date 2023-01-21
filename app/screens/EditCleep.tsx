@@ -27,17 +27,7 @@ const EditCleep = ({
   const handleFABPress = async () => {
     if (content) {
       // update cleep
-      start();
-      createCleep(content)
-        .then((res: any) => {
-          stop();
-          setMessage(res?.message);
-          navigation.navigate(routes.MAIN_NAVIGATION.HOME.CLEEP_LIST);
-        })
-        .catch((err) => {
-          stop();
-          setMessage(err?.message);
-        });
+      setMessage("Updating Cleep is not implemented yet.");
     } else {
       // paste from clipboard
       const text = await Clipboard.getStringAsync();
